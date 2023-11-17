@@ -1,0 +1,25 @@
+---
+import ImageItem from "./ImageItem.astro";
+
+const apiRequest = 'https://api.nasa.gov/planetary/apod?api_key=ojdZLbWHWFKcHiAB6bRfdjJpqEw5N2bzh1yW8aTD&start_date=2021-11-09&end_date=2021-11-17&thumbs=true';
+const response = await fetch(apiRequest);
+const data = await response.json();
+data.reverse();
+
+---
+<ul class="astro-image-grid">
+    {
+        data.map((item) => (
+            <ImageItem item={item} />
+        ))
+    }
+</ul>
+
+<style lang="scss">
+	.astro-image-grid {
+        list-style: none;
+        display: grid;
+		gap: 2rem;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
+</style>

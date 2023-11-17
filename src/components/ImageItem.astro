@@ -1,0 +1,40 @@
+---
+interface Props {
+    item: object
+}
+
+let {item} = Astro.props;
+
+// example. https://www.youtube.com/embed/25FfQ9MEQE8
+if(item.media_type === 'video') {
+    // let youtubeVideoId = item.url;
+    let youtubeUrlSegments = item.url.split('/');
+    let youtubeID = youtubeUrlSegments[youtubeUrlSegments.length - 1];
+    item = {...item, url: `https://img.youtube.com/vi/${youtubeID}/0.jpg`};
+}
+
+---
+
+<li>
+    <figure>
+        <img src={item.url} alt={item.title} />
+    </figure>
+    <p>{item.title}</p>
+    <p>{item.date}</p>
+</li>
+
+
+<style lang="scss">
+
+    figure {
+        overflow: hidden;
+        aspect-ratio: 1/1;
+
+        img {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+</style>

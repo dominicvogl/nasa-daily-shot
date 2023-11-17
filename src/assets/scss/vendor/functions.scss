@@ -1,0 +1,19 @@
+@use "sass:math";
+
+@function calc-rem(
+	$px: 16px,
+	$basePx: 16px
+) {
+	@return math.div($px, $basePx) * 1rem;
+}
+
+// from https://chrisburnell.com/clamp-calculator/
+@function calc-clamp($fsMin, $fsMax, $vpwMin, $vpwMax) {
+
+	$change: math.div( ($fsMax - $fsMin), ($vpwMax - $vpwMin));
+	$a: calc-rem($fsMax - $vpwMax * $change); // difference from min to max in rem
+	$b: $change * 100vw;
+
+	@return clamp(#{$fsMin}, #{$a} + #{$b}, #{$fsMax});
+
+}

@@ -1,0 +1,17 @@
+.mod {
+	// center module
+	margin-inline: auto;
+	padding-inline: var(--mod-padding);
+
+	&.mod-margin {
+		margin-block: var(--mod-margin);
+	}
+
+	&.small-margin {
+		margin-block: calc(var(--mod-margin) / 3);
+	}
+
+	&.fixed-width {
+		max-width: min(75rem, 100vw);
+	}
+}

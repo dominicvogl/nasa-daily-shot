@@ -1,0 +1,30 @@
+.container {
+	max-width: min(calc(100vw - var(--medium-gap)), var(--content-width));
+	margin-inline: auto;
+
+	&:is(.inner-gap) {
+		margin-inline: inherit;
+		max-width: min(calc(100vw), var(--content-width));
+		padding-inline: calc(var(--medium-gap) / 2);
+	}
+
+	&:is(.fullwidth) {
+		max-width: min(calc(100vw), var(--content-width));
+	}
+}
+
+#imageLoader {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	display: flex;
+	color: var(--brand-white);
+	justify-content: center;
+	align-items: center;
+	background-color: rgba(255,255,255,0.3);
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+}
