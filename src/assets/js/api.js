@@ -1,11 +1,3 @@
----
-import ImageItem from "./ImageItem.astro";
-
-/**
- * generate a date string in the format YYYY-MM-DD,
- * current date or with offset of X days
- **/
-
 function getCurrentDate(offset = 0) {
     const date = new Date();
     date.setDate(date.getDate() - offset);
@@ -27,24 +19,4 @@ const apiRequest = () => {
     return `${nasaGovApiPath}?api_key=${nasaGovApiKey}&start_date=${start_date}&end_date=${end_date}&thumbs=true`;
 }
 
-const response = await fetch(apiRequest());
-const data = await response.json();
-data.reverse();
-
----
-<ul class="astro-image-grid">
-    {
-        data.map((item) => (
-            <ImageItem item={item} />
-        ))
-    }
-</ul>
-
-<style lang="scss">
-	.astro-image-grid {
-        list-style: none;
-        display: grid;
-		gap: 2rem;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    }
-</style>
+export default apiRequest;

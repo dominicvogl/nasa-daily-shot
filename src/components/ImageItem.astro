@@ -17,7 +17,7 @@ if(item.media_type === 'video') {
 
 <li>
     <figure>
-        <img src={item.url} alt={item.title} />
+        <img loading="lazy" src={item.url} alt={item.title} />
     </figure>
     <p>{item.title}</p>
     <p>{item.date}</p>
@@ -29,6 +29,7 @@ if(item.media_type === 'video') {
     figure {
         overflow: hidden;
         aspect-ratio: 1/1;
+        background-color: #fd8f8f;
 
         img {
             object-fit: cover;
