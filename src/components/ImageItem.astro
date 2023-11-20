@@ -16,13 +16,44 @@ if(item.media_type === 'video') {
 ---
 
 <li>
-    <figure>
-        <img loading="lazy" src={item.url} alt={item.title} />
-    </figure>
-    <p>{item.title}</p>
-    <p>{item.date}</p>
+    <article>
+        <figure>
+            <a href={item.hdurl} data-fancybox="apod-gallery" data-caption={item.title}>
+                <img loading="lazy" src={item.url} alt={item.title} />
+            </a>
+
+        </figure>
+        <header>
+            <h3>{item.title}</h3>
+            <date>{item.date}</date>
+        </header>
+        <div class="contents">
+            <p>{item.explanation}</p>
+        </div>
+    </article>
 </li>
 
+<script>
+
+    import { Fancybox } from "@fancyapps/ui";
+    import "@fancyapps/ui/dist/fancybox/fancybox.css";
+
+    Fancybox.bind('[data-fancybox="apod-gallery"]', {
+        // Your custom options
+        Toolbar: {
+            display: {
+                left: ["infobar"],
+                middle: [
+                    "zoomIn",
+                    "zoomOut",
+                    "toggle1to1",
+                ],
+                right: ["close"],
+            },
+        },
+    });
+
+</script>
 
 <style lang="scss">
 
@@ -36,6 +67,10 @@ if(item.media_type === 'video') {
             width: 100%;
             height: 100%;
         }
+    }
+
+    header {
+        margin-block: 1rem 1.5rem;
     }
 
 </style>
